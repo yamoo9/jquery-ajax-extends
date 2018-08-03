@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery Ajax Extends Library</title>
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="../src/console.divider.js"></script>
+  <script src="../src/jquery.ajax.extends.js"></script>
+</head>
+<body>
+
+<script>
+(function(global, $){
+  'use strict';
+
+  var api_address = 'https://jsonplaceholder.typicode.com/users/';
+
+  // ------------------------------------------------------------
+  // JSONP
+  $.jsonp(
+    api_address,
+    function(data){
+      console.divider('JSONP');
+      console.log(data);
+    }
+  );
+
+  // ------------------------------------------------------------
+  // PUT
+  $.put(
+    api_address + '2',
+    {
+      "name": "김민재",
+      "username": "kim",
+      "email": "kim@melissa.tv",
+      "address": {
+        "street": "성북구",
+        "suite": "길음동 길음로33",
+        "city": "서울시",
+        "zipcode": "90566-1243",
+        "geo": {
+          "lat": "243.9509",
+          "lng": "134.84618"
+        }
+      },
+      "phone": "010-692-6593",
+      "website": "kim.io",
+      "company": {
+        "name": "NEXON",
+        "catchPhrase": "재미없어도 즐겁게!",
+        "bs": "ZEOZEN"
+      }
+    },
+    function(data, stataus) {
+      console.divider('PUT');
+      console.log(data);
+    }
+  );
+
+  // ------------------------------------------------------------
+  // PATCH
+  $.patch(
+    api_address + '5',
+    {
+      "name": "Jee Hoon",
+      "username": "yamoo9",
+    },
+    function(data, stataus) {
+      console.divider('PATCH');
+      console.log(data);
+    }
+  );
+
+  // ------------------------------------------------------------
+  // DELETE
+  $.delete(
+    api_address + '7',
+    function(data, stataus) {
+      console.divider('DELETE');
+      console.log(stataus);
+    }
+  );
+
+})(window, window.jQuery);
+</script>
+</body>
+</html>
